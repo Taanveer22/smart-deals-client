@@ -10,19 +10,28 @@ const Signin = () => {
     const password = e.target.password.value;
     console.log(email, password);
 
-    const result = await signInUser(email, password);
-    if (result?.user) {
-      console.log(result);
-      toast.success('sign in done');
+    try {
+      const result = await signInUser(email, password);
+      if (result?.user) {
+        // console.log(result);
+        toast.success('sign in done');
+      }
+    } catch (error) {
+      // console.log(error);
+      toast.error(error.message || 'sign in failed');
     }
   };
 
   const handleGoogleSignIn = async () => {
-    const result = await googleSignIn();
-
-    if (result?.user) {
-      console.log(result);
-      toast.success('sign in done');
+    try {
+      const result = await googleSignIn();
+      if (result?.user) {
+        // console.log(result);
+        toast.success('sign in done');
+      }
+    } catch (error) {
+      // console.log(error);
+      toast.error(error.message || 'sign in failed');
     }
   };
 

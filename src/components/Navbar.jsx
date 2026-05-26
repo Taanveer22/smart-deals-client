@@ -1,6 +1,21 @@
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
+import { toast } from 'react-toastify';
+import useAuth from '../hooks/useAuth';
 
 const Navbar = () => {
+  const { user, signOutUser } = useAuth();
+  // console.log(user);
+
+  const handleSignOutUser = async () => {
+    try {
+      await signOutUser();
+      toast.success('Sign out successful');
+    } catch (error) {
+      // console.log(error);
+      toast.error(error.message || 'sign out failed');
+    }
+  };
+
   const links = (
     <>
       <li>
@@ -8,12 +23,6 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink to={'/allProducts'}>All Products</NavLink>
-      </li>
-      <li>
-        <NavLink to={'/register'}>Register</NavLink>
-      </li>
-      <li>
-        <NavLink to={'/signin'}>Signin</NavLink>
       </li>
     </>
   );
@@ -45,13 +54,26 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <Link className="btn btn-ghost text-xl">Smart Deals</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        {user ? (
+          <button onClick={handleSignOutUser} className="btn btn-sm btn-error">
+            Signout
+          </button>
+        ) : (
+          <div className="flex gap-2">
+            <button className="btn btn-sm btn-success">
+              <NavLink to={'/register'}>Register</NavLink>
+            </button>
+            <button className="btn btn-sm btn-success">
+              <NavLink to={'/signin'}>Signin</NavLink>
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

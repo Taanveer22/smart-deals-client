@@ -12,10 +12,15 @@ const Register = () => {
     const password = e.target.password.value;
     console.log(name, photo, email, password);
 
-    const result = await createUser(email, password);
-    if (result?.user) {
-      console.log(result);
-      toast.success('registration done');
+    try {
+      const result = await createUser(email, password);
+      if (result?.user) {
+        // console.log(result);
+        toast.success('registration done');
+      }
+    } catch (error) {
+      // console.log(error);
+      toast.error(error.message || 'Registration failed');
     }
   };
 
