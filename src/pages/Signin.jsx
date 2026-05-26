@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
 
@@ -27,6 +28,16 @@ const Signin = () => {
       const result = await googleSignIn();
       if (result?.user) {
         // console.log(result);
+        // console.log(result?.user?.email);
+        // console.log(result?.user?.providerData?.[0]?.email);
+        const userInfo = {
+          email: result?.user?.email || result?.user?.providerData?.[0]?.email,
+          name: result?.user?.displayName || result?.user?.providerData?.[0]?.displayName,
+          photo: result?.user?.photoURL || result?.user?.providerData?.[0]?.photoURL,
+        };
+        // console.log(userInfo);
+        const res = await axios.post(`http://localhost:5000/users`, userInfo);
+        console.log(res.data);
         toast.success('sign in done');
       }
     } catch (error) {
