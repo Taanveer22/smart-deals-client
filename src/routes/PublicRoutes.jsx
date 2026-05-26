@@ -2,6 +2,8 @@ import { createBrowserRouter } from 'react-router';
 import RootLayout from '../layouts/RootLayout';
 import AllProducts from '../pages/AllProducts';
 import Home from '../pages/Home';
+import Register from '../pages/Register';
+import Signin from '../pages/Signin';
 
 let PublicRoutes = createBrowserRouter([
   {
@@ -15,6 +17,14 @@ let PublicRoutes = createBrowserRouter([
       {
         path: '/allProducts',
         element: <AllProducts></AllProducts>,
+      },
+      {
+        path: '/register',
+        element: <Register></Register>,
+      },
+      {
+        path: '/signin',
+        element: <Signin></Signin>,
       },
     ],
   },
