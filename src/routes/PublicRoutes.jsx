@@ -4,6 +4,7 @@ import AllProducts from '../pages/AllProducts';
 import Home from '../pages/Home';
 import Register from '../pages/Register';
 import Signin from '../pages/Signin';
+import PrivateRoute from './PrivateRoute';
 
 let PublicRoutes = createBrowserRouter([
   {
@@ -16,7 +17,11 @@ let PublicRoutes = createBrowserRouter([
       },
       {
         path: '/allProducts',
-        element: <AllProducts></AllProducts>,
+        element: (
+          <PrivateRoute>
+            <AllProducts></AllProducts>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/register',
