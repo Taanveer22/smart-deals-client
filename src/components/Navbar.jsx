@@ -54,7 +54,9 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <Link className="btn btn-ghost text-xl">Smart Deals</Link>
+        <Link className="btn btn-ghost text-xl">
+          Smart <span className="text-primary">Deals</span>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
@@ -66,10 +68,10 @@ const Navbar = () => {
           </button>
         ) : (
           <div className="flex gap-2">
-            <button className="btn btn-sm btn-success">
+            <button className="btn btn-sm btn-gradient">
               <NavLink to={'/register'}>Register</NavLink>
             </button>
-            <button className="btn btn-sm btn-success">
+            <button className="btn btn-sm btn-gradient">
               <NavLink to={'/signin'}>Signin</NavLink>
             </button>
           </div>
