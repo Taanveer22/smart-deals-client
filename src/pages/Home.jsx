@@ -10,7 +10,7 @@ const Home = () => {
     axios
       .get(`http://localhost:5000/products/recent`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setSixProducts(res.data);
       })
       .catch((error) => {
@@ -20,7 +20,7 @@ const Home = () => {
 
   return (
     <div>
-      <section>
+      <section className="mb-8 lg:mb-16">
         <Banner></Banner>
       </section>
       <section>
