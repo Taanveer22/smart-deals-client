@@ -1,10 +1,12 @@
 import { createBrowserRouter } from 'react-router';
 import RootLayout from '../layouts/RootLayout';
 import AllProducts from '../pages/AllProducts';
+import BuyerBids from '../pages/BuyerBids';
+import CreateProduct from '../pages/CreateProduct';
 import Home from '../pages/Home';
 import Register from '../pages/Register';
+import SellerProducts from '../pages/SellerProducts';
 import Signin from '../pages/Signin';
-import PrivateRoute from './PrivateRoute';
 
 let PublicRoutes = createBrowserRouter([
   {
@@ -17,11 +19,19 @@ let PublicRoutes = createBrowserRouter([
       },
       {
         path: '/allProducts',
-        element: (
-          <PrivateRoute>
-            <AllProducts></AllProducts>
-          </PrivateRoute>
-        ),
+        element: <AllProducts></AllProducts>,
+      },
+      {
+        path: '/createProduct',
+        element: <CreateProduct></CreateProduct>,
+      },
+      {
+        path: '/sellerProducts',
+        element: <SellerProducts></SellerProducts>,
+      },
+      {
+        path: '/buyerBids',
+        element: <BuyerBids></BuyerBids>,
       },
       {
         path: '/register',
