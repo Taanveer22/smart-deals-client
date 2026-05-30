@@ -4,6 +4,7 @@ import AllProducts from '../pages/AllProducts';
 import BuyerBids from '../pages/BuyerBids';
 import CreateProduct from '../pages/CreateProduct';
 import Home from '../pages/Home';
+import ProductCardDetails from '../pages/ProductCardDetails';
 import Register from '../pages/Register';
 import SellerProducts from '../pages/SellerProducts';
 import Signin from '../pages/Signin';
@@ -21,6 +22,15 @@ let PublicRoutes = createBrowserRouter([
       {
         path: '/allProducts',
         element: <AllProducts></AllProducts>,
+      },
+      {
+        path: '/productCardDetails/:id',
+        element: (
+          <PrivateRoute>
+            <ProductCardDetails></ProductCardDetails>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`),
       },
       {
         path: '/createProduct',

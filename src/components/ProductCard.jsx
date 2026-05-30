@@ -1,5 +1,8 @@
+import { Link } from 'react-router';
+
 const ProductCard = ({ productItem }) => {
-  console.log(productItem);
+  // console.log(productItem);
+
   return (
     <div>
       <div className="card bg-base-100 shadow-sm border-2 border-primary">
@@ -12,7 +15,9 @@ const ProductCard = ({ productItem }) => {
             ${productItem?.price_min}-{productItem?.price_max}
           </p>
           <div className="card-actions justify-center">
-            <button className="btn btn-primary">View Details</button>
+            <Link to={`/productCardDetails/${productItem?._id}`}>
+              <button className="btn btn-primary">View Details</button>
+            </Link>
           </div>
         </div>
       </div>
