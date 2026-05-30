@@ -7,6 +7,7 @@ import Home from '../pages/Home';
 import Register from '../pages/Register';
 import SellerProducts from '../pages/SellerProducts';
 import Signin from '../pages/Signin';
+import PrivateRoute from './PrivateRoute';
 
 let PublicRoutes = createBrowserRouter([
   {
@@ -23,15 +24,27 @@ let PublicRoutes = createBrowserRouter([
       },
       {
         path: '/createProduct',
-        element: <CreateProduct></CreateProduct>,
+        element: (
+          <PrivateRoute>
+            <CreateProduct></CreateProduct>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/sellerProducts',
-        element: <SellerProducts></SellerProducts>,
+        element: (
+          <PrivateRoute>
+            <SellerProducts></SellerProducts>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/buyerBids',
-        element: <BuyerBids></BuyerBids>,
+        element: (
+          <PrivateRoute>
+            <BuyerBids></BuyerBids>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/register',
