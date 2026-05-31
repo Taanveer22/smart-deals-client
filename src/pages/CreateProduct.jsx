@@ -1,7 +1,16 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import useAuth from '../hooks/useAuth';
 
 const CreateProduct = () => {
+  const { user } = useAuth();
+  // console.log(user);
+
+  const sellerEmail = user?.email || user?.providerData?.[0]?.email;
+  const buyerName = user?.displayName || user?.providerData?.[0]?.displayName;
+  const sellerImage = user?.photoURL || user?.providerData?.[0]?.photoURL;
+  // console.log(sellerEmail, buyerName, sellerImage);
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
@@ -25,12 +34,12 @@ const CreateProduct = () => {
       created_at: new Date().toISOString(),
     };
 
-    console.log(newProduct);
+    // console.log(newProduct);
 
     axios
       .post('http://localhost:5000/products', newProduct)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res.data) {
           toast.success('product created successfully');
         }
@@ -159,10 +168,12 @@ const CreateProduct = () => {
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend">Seller Name</legend>
                   <input
+                    defaultValue={buyerName}
                     name="seller_name"
                     type="text"
                     placeholder="Your Name"
                     className="input input-bordered w-full"
+                    readOnly
                     required
                   />
                 </fieldset>
@@ -170,10 +181,12 @@ const CreateProduct = () => {
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend">Seller Email</legend>
                   <input
+                    defaultValue={sellerEmail}
                     name="seller_email"
                     type="email"
                     placeholder="your@email.com"
                     className="input input-bordered w-full"
+                    readOnly
                     required
                   />
                 </fieldset>
@@ -194,10 +207,13 @@ const CreateProduct = () => {
                 <fieldset className="fieldset">
                   <legend className="fieldset-legend">Seller Image URL</legend>
                   <input
+                    defaultValue={sellerImage}
                     name="seller_image"
                     type="url"
                     placeholder="https://..."
                     className="input input-bordered w-full"
+                    readOnly
+                    required
                   />
                 </fieldset>
               </div>

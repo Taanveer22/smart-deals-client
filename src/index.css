@@ -6,38 +6,33 @@
   name: 'light';
   default: true;
 
-  --color-primary: #6a35e5;
-  --color-secondary: #9c5ff1;
+  --color-primary: #6d28d9;
+  --color-secondary: #9333ea;
 
   --color-base-100: #ffffff;
-  --color-base-200: #f3f4f6;
-  --color-base-300: #e5e7eb;
-
-  --color-base-content: #111827;
+  --color-base-200: #f5f3ff;
+  --color-base-300: #ede9fe;
 }
 
 /* DARK */
 @plugin "daisyui/theme" {
   name: 'dark';
-  prefersdark: true;
 
-  --color-primary: #6a35e5;
-  --color-secondary: #9c5ff1;
+  --color-primary: #8b5cf6;
+  --color-secondary: #c084fc;
 
   --color-base-100: #111827;
   --color-base-200: #1f2937;
   --color-base-300: #374151;
-
-  --color-base-content: #f9fafb;
 }
 
 .btn-gradient {
   background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
-  color: #ffffff;
+  color: white;
   border: none;
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(to right, #5a2bc5, #8a4fd8);
+  background: linear-gradient(to right, #6b3df5, #9d5eff);
   border: none;
 }

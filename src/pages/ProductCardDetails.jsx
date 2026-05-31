@@ -1,9 +1,15 @@
+import { useRef } from 'react';
 import { FaCalendarAlt, FaMapMarkerAlt, FaPhone, FaUser } from 'react-icons/fa';
 import { useLoaderData } from 'react-router';
+import BidProduct from './BidProduct';
 
 const ProductCardDetails = () => {
   const loadedDetailsCard = useLoaderData();
   //   console.log(loadedDetailsCard);
+  const modalRef = useRef(null);
+  const handleModalOpen = () => {
+    modalRef?.current?.showModal();
+  };
 
   const {
     _id,
@@ -140,9 +146,14 @@ const ProductCardDetails = () => {
             </div>
 
             {/* CTA */}
-            <button className="btn w-full text-white text-lg bg-linear-to-r from-violet-600 to-purple-500 hover:from-violet-700 hover:to-purple-600 border-0">
+            <button
+              onClick={handleModalOpen}
+              className="btn w-full text-white text-lg bg-linear-to-r from-violet-600 to-purple-500 hover:from-violet-700 hover:to-purple-600 border-0"
+            >
               I Want To Buy This Product
             </button>
+            {/* pass data inside modal form */}
+            <BidProduct modalRef={modalRef} loadedDetailsCard={loadedDetailsCard}></BidProduct>
           </div>
         </div>
       </div>
