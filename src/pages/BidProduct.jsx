@@ -27,7 +27,7 @@ const BidProduct = ({ loadedDetailsCard, modalRef }) => {
       ...Object.fromEntries(formData.entries()),
       bid_price: Number(formData.get('bid_price')),
       product: loadedDetailsCard?._id,
-      created_at: new Date().toISOString(),
+      status: 'pending',
     };
     // console.log(newBid);
 
@@ -35,7 +35,7 @@ const BidProduct = ({ loadedDetailsCard, modalRef }) => {
     axios
       .post(`http://localhost:5000/bids`, newBid)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         if (res?.data) {
           toast.success('Bid offer send succcessfully');
         }
