@@ -54,11 +54,23 @@ const BidProduct = ({ loadedDetailsCard, modalRef }) => {
       {/* ============ MODAL CONTAINER RESPONSIVE ============ */}
       <div className="modal-box w-full max-w-md sm:max-w-lg">
         {/* ============ HEADER ============ */}
-        <h2 className="text-2xl sm:text-3xl font-bold">Place Your Offer</h2>
-        <p className="mt-2 text-sm sm:text-base text-base-content/70">
-          Submit your best price to the seller.
-        </p>
-        {/* ============ FORM START ============ */}
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold">Place Your Offer</h2>
+            <p className="mt-2 text-sm sm:text-base text-base-content/70">
+              Submit your best price to the seller.
+            </p>
+          </div>
+          <button
+            type="button"
+            onClick={() => modalRef?.current?.close()}
+            className="btn btn-error"
+          >
+            Close Modal
+          </button>
+        </div>
+
+        {/* ============ BID FORM  ============ */}
         <form onSubmit={handleFormSubmit} className="mt-6 space-y-4">
           {/* Buyer Name */}
           <fieldset className="fieldset">
@@ -121,14 +133,6 @@ const BidProduct = ({ loadedDetailsCard, modalRef }) => {
             Submit Bid
           </button>
         </form>
-        {/* ============ CLOSE BUTTON ============ */}
-        <button
-          type="button"
-          onClick={() => modalRef?.current?.close()}
-          className="btn btn-sm btn-error mt-4 block w-20 mx-auto"
-        >
-          Close
-        </button>
       </div>
     </dialog>
   );

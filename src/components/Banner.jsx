@@ -3,7 +3,7 @@ import { FaSearch } from 'react-icons/fa';
 const Banner = () => {
   return (
     <div>
-      <div className="hero bg-base-200 min-h-screen">
+      <div className="hero bg-base-300 min-h-screen">
         <div className="hero-content text-center">
           <div className="max-w-md">
             <h1 className="text-5xl font-bold">Deal your Products in a Smart way !</h1>
@@ -22,8 +22,8 @@ const Banner = () => {
               </button>
             </div>
             <div className="py-6 flex gap-6 justify-center items-center">
-              <button className="btn btn-primary">Watch all products</button>
-              <button className="btn btn-primary">Post an product</button>
+              <button className="btn btn-accent">Watch all products</button>
+              <button className="btn btn-accent">Post an product</button>
             </div>
           </div>
         </div>

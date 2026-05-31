@@ -13,7 +13,7 @@ const RecentProducts = ({ sixProducts }) => {
         ))}
       </div>
       <Link to="/allProducts">
-        <button className="btn btn-secondary block w-28 mx-auto">Show all</button>
+        <button className="btn btn-accent block w-28 mx-auto">Show all</button>
       </Link>
     </div>
   );
