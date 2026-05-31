@@ -30,7 +30,6 @@ const Navbar = () => {
       <li>
         <NavLink to={'/sellerProducts'}>Seller Products</NavLink>
       </li>
-
       <li>
         <NavLink to={'/buyerBids'}>Buyer Bids</NavLink>
       </li>
@@ -73,17 +72,17 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         {user ? (
-          <button onClick={handleSignOutUser} className="btn btn-sm btn-error">
+          <button onClick={handleSignOutUser} className="btn btn-sm btn-secondary">
             Signout
           </button>
         ) : (
           <div className="flex gap-2">
-            <button className="btn btn-sm btn-gradient">
-              <NavLink to={'/register'}>Register</NavLink>
-            </button>
-            <button className="btn btn-sm btn-gradient">
-              <NavLink to={'/signin'}>Signin</NavLink>
-            </button>
+            <NavLink to={'/signin'} className="btn btn-sm btn-primary">
+              Signin
+            </NavLink>
+            <NavLink to={'/register'} className="btn btn-sm btn-primary">
+              Register
+            </NavLink>
           </div>
         )}
       </div>

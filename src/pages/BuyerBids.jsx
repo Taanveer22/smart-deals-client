@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
 
 const BuyerBids = () => {
@@ -7,12 +8,29 @@ const BuyerBids = () => {
   const { user } = useAuth();
   const userEmail = user?.email || user?.providerData?.[0]?.email;
 
+  const handleDeleteBid = (id) => {
+    // console.log(id);
+    axios
+      .delete(`http://localhost:5000/bids/${id}`)
+      .then((res) => {
+        // console.log(res.data);
+        if (res?.data?.deletedCount > 0) {
+          const remainingBids = bidsTable.filter((bidItem) => bidItem._id !== id);
+          setBidsTable(remainingBids);
+          toast.success('Delted bids completely');
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/bids?email=${userEmail}`)
       .then((res) => {
-        console.log(res.data);
-        setBidsTable(res.data);
+        // console.log(res.data);
+        setBidsTable(res?.data);
       })
       .catch((error) => {
         console.log(error);
@@ -39,9 +57,14 @@ const BuyerBids = () => {
               <th>{index + 1}</th>
               <td>{bidItem?._id}</td>
               <td>{bidItem?.status}</td>
-              <td>{bidItem?.bid_price}</td>
+              <td>$ {bidItem?.bid_price}</td>
               <td>
-                <button className="btn btn-sm btn-error">Delete</button>
+                <button
+                  onClick={() => handleDeleteBid(bidItem?._id)}
+                  className="btn btn-xs btn-error"
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           ))}

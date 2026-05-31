@@ -7,8 +7,7 @@
   default: true;
 
   --color-primary: #6d28d9;
-  --color-secondary: #9333ea;
-  --color-accent: #2dd4bf; /* mint — for CTAs, highlights, badges */
+  --color-secondary: #2dd4bf;
 
   --color-base-100: #ffffff;
   --color-base-200: #f5f3ff;
@@ -20,21 +19,24 @@
   name: 'dark';
 
   --color-primary: #8b5cf6;
-  --color-secondary: #c084fc;
-  --color-accent: #2dd4bf; /* mint stays same — works on dark bg too */
+  --color-secondary: #2dd4bf;
 
   --color-base-100: #111827;
   --color-base-200: #1f2937;
   --color-base-300: #374151;
 }
 
+a.active {
+  background-color: #803eea;
+}
+
 .btn-gradient {
-  background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+  background: linear-gradient(to right, #1a045b, #9d6dea);
   color: white;
   border: none;
 }
 
 .btn-gradient:hover {
-  background: linear-gradient(to right, #6b3df5, #9d5eff);
+  background: linear-gradient(to right, #065b6a, #50cbe7);
   border: none;
 }

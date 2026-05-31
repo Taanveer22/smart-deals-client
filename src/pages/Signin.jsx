@@ -76,7 +76,7 @@ const Signin = () => {
             <button className="btn btn-primary mt-4">Signin</button>
           </fieldset>
         </form>
-        <button onClick={handleGoogleSignIn} className="btn btn-accent my-4 mx-6">
+        <button onClick={handleGoogleSignIn} className="btn btn-secondary my-4 mx-6">
           Google Signin
         </button>
       </div>

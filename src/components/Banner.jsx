@@ -22,8 +22,8 @@ const Banner = () => {
               </button>
             </div>
             <div className="py-6 flex gap-6 justify-center items-center">
-              <button className="btn btn-accent">Watch all products</button>
-              <button className="btn btn-accent">Post an product</button>
+              <button className="btn btn-secondary">Watch all products</button>
+              <button className="btn btn-secondary">Post an product</button>
             </div>
           </div>
         </div>
