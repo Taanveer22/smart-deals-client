@@ -3,7 +3,7 @@ import { FaDollarSign, FaEnvelope, FaImage, FaPhone, FaUser } from 'react-icons/
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
 
-const BidProduct = ({ loadedDetailsCard, modalRef }) => {
+const ModalBidProduct = ({ loadedDetailsCard, modalRef, setRefresh }) => {
   const { user } = useAuth();
   // console.log(loadedDetailsCard);
 
@@ -26,8 +26,8 @@ const BidProduct = ({ loadedDetailsCard, modalRef }) => {
     const newBid = {
       ...Object.fromEntries(formData.entries()),
       bid_price: Number(formData.get('bid_price')),
-      product: loadedDetailsCard?._id,
       status: 'pending',
+      productId: loadedDetailsCard?._id,
     };
     // console.log(newBid);
 
@@ -38,6 +38,8 @@ const BidProduct = ({ loadedDetailsCard, modalRef }) => {
         // console.log(res.data);
         if (res?.data) {
           toast.success('Bid offer send succcessfully');
+          // 🔁 TRIGGER REFRESH (VERY IMPORTANT)
+          setRefresh((prev) => !prev);
         }
       })
       .catch((error) => {
@@ -138,4 +140,4 @@ const BidProduct = ({ loadedDetailsCard, modalRef }) => {
   );
 };
 
-export default BidProduct;
+export default ModalBidProduct;

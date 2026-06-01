@@ -55,7 +55,7 @@ const BuyerBids = () => {
           {bidsTable.map((bidItem, index) => (
             <tr key={bidItem._id}>
               <th>{index + 1}</th>
-              <td>{bidItem?._id}</td>
+              <td>{bidItem?.productId}</td>
               <td>{bidItem?.status}</td>
               <td>$ {bidItem?.bid_price}</td>
               <td>

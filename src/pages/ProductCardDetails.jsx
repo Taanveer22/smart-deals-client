@@ -1,16 +1,19 @@
-import { useRef } from 'react';
+import axios from 'axios';
+import { useEffect, useRef, useState } from 'react';
 import { FaCalendarAlt, FaMapMarkerAlt, FaPhone, FaUser } from 'react-icons/fa';
 import { useLoaderData } from 'react-router';
-import BidProduct from './BidProduct';
+import BiddersList from '../components/BiddersList';
+import ModalBidProduct from '../components/ModalBidProduct';
 
 const ProductCardDetails = () => {
+  // ✅ 1. Hooks (ALWAYS FIRST)
+  const [biddersTable, setBiddersTable] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+  const modalRef = useRef(null);
   const loadedDetailsCard = useLoaderData();
   //   console.log(loadedDetailsCard);
-  const modalRef = useRef(null);
-  const handleModalOpen = () => {
-    modalRef?.current?.showModal();
-  };
 
+  // ✅ 2. Destructuring props/data
   const {
     _id,
     title,
@@ -30,8 +33,31 @@ const ProductCardDetails = () => {
     usage,
   } = loadedDetailsCard;
 
+  // ✅ 3. Functions (API calls, event handlers )
+  const handleModalOpen = () => {
+    modalRef?.current?.showModal();
+  };
+
+  // ✅ 4. useEffect (side effects)
+  useEffect(() => {
+    if (!loadedDetailsCard?._id) {
+      return;
+    }
+    axios
+      .get(`http://localhost:5000/bids/product/${loadedDetailsCard?._id}`)
+      .then((res) => {
+        // console.log(res.data);
+        setBiddersTable(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [loadedDetailsCard?._id, refresh]);
+  // 👈 refresh triggers re-fetch
+
   return (
     <section className="bg-base-200 min-h-screen py-10">
+      {/*================ FULL CARD DATA ================*/}
       <div className="container mx-auto max-w-7xl px-4">
         <div className="grid gap-8 lg:grid-cols-2">
           {/* LEFT SIDE */}
@@ -152,11 +178,18 @@ const ProductCardDetails = () => {
             >
               I Want To Buy This Product
             </button>
-            {/* pass data inside modal form */}
-            <BidProduct modalRef={modalRef} loadedDetailsCard={loadedDetailsCard}></BidProduct>
+            {/*================ pass data into modal form ================*/}
+            <ModalBidProduct
+              modalRef={modalRef}
+              loadedDetailsCard={loadedDetailsCard}
+              setRefresh={setRefresh}
+            ></ModalBidProduct>
           </div>
         </div>
       </div>
+
+      {/*================ BIDDERS LIST================= */}
+      <BiddersList biddersTable={biddersTable}></BiddersList>
     </section>
   );
 };
