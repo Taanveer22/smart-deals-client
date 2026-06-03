@@ -1,10 +1,11 @@
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const CreateProduct = () => {
   const { user } = useAuth();
   // console.log(user);
+  const axiosSecure = useAxiosSecure();
 
   const sellerEmail = user?.email || user?.providerData?.[0]?.email;
   const buyerName = user?.displayName || user?.providerData?.[0]?.displayName;
@@ -36,11 +37,11 @@ const CreateProduct = () => {
 
     // console.log(newProduct);
 
-    axios
-      .post('http://localhost:5000/products', newProduct)
+    axiosSecure
+      .post('/products', newProduct)
       .then((res) => {
         // console.log(res.data);
-        if (res.data) {
+        if (res?.data?.insertedId) {
           toast.success('product created successfully');
         }
       })
