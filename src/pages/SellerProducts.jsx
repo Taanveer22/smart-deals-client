@@ -24,7 +24,10 @@ const SellerProducts = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        if (error) {
+          toast.error('product deleted failed ');
+        }
       });
   };
 
@@ -36,7 +39,10 @@ const SellerProducts = () => {
         setProductsTable(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        if (error) {
+          toast.error('by email bids not found ');
+        }
       });
   }, [userEmail, axiosSecure]);
 

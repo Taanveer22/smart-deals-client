@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Banner from '../components/Banner';
 import RecentProducts from '../components/RecentProducts';
 import useAxios from '../hooks/useAxios';
@@ -15,7 +16,10 @@ const Home = () => {
         setSixProducts(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        if (error) {
+          toast.error('not getting recent products');
+        }
       });
   }, [axiosDefault]);
 

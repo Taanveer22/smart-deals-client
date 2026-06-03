@@ -22,7 +22,10 @@ const BuyerBids = () => {
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        if (error) {
+          toast.error('Delted bids failed');
+        }
       });
   };
 
@@ -34,7 +37,10 @@ const BuyerBids = () => {
         setBidsTable(res?.data);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        if (error) {
+          toast.error('bids not getting from backend');
+        }
       });
   }, [userEmail, axiosSecure]);
 

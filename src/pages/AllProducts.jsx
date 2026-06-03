@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import ProductCard from '../components/ProductCard';
 import useAxios from '../hooks/useAxios';
 
@@ -14,7 +15,10 @@ const AllProducts = () => {
         setAllCards(res.data);
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
+        if (error) {
+          toast.error('all products not get from backend');
+        }
       });
   }, [axiosDefault]);
 
