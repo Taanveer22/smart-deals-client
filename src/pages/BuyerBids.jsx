@@ -1,17 +1,18 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const BuyerBids = () => {
   const [bidsTable, setBidsTable] = useState([]);
   const { user } = useAuth();
   const userEmail = user?.email || user?.providerData?.[0]?.email;
+  const axiosSecure = useAxiosSecure();
 
   const handleDeleteBid = (id) => {
     // console.log(id);
-    axios
-      .delete(`http://localhost:5000/bids/${id}`)
+    axiosSecure
+      .delete(`/bids/${id}`)
       .then((res) => {
         // console.log(res.data);
         if (res?.data?.deletedCount > 0) {
@@ -26,8 +27,8 @@ const BuyerBids = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/bids?email=${userEmail}`)
+    axiosSecure
+      .get(`/bids?email=${userEmail}`)
       .then((res) => {
         // console.log(res.data);
         setBidsTable(res?.data);
@@ -35,7 +36,7 @@ const BuyerBids = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [userEmail]);
+  }, [userEmail, axiosSecure]);
 
   return (
     <div className="overflow-x-auto">

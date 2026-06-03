@@ -2,9 +2,11 @@ import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
+import useAxios from '../hooks/useAxios';
 
 const Signin = () => {
   const { signInUser, googleSignIn } = useAuth();
+  const axiosDefault = useAxios();
   const location = useLocation();
   const navigate = useNavigate();
   // since state is just a string, not an object
@@ -26,7 +28,7 @@ const Signin = () => {
       };
       // console.log(userInfo);
       if (result?.user) {
-        const res = await axios.post(`http://localhost:5000/users`, userInfo);
+        const res = await axiosDefault.post(`/users`, userInfo);
         // console.log(res.data);
         res?.data && toast.success('sign in done');
         navigate(from, { replace: true });

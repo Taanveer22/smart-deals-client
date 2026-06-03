@@ -4,11 +4,11 @@ import useAxios from '../hooks/useAxios';
 
 const AllProducts = () => {
   const [allCards, setAllCards] = useState([]);
-  const axiosInstance = useAxios();
+  const axiosDefault = useAxios();
 
   useEffect(() => {
-    axiosInstance
-      .get(`/products`)
+    axiosDefault
+      .get(`/products/all`)
       .then((res) => {
         // console.log(res.data);
         setAllCards(res.data);
@@ -16,7 +16,7 @@ const AllProducts = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [axiosInstance]);
+  }, [axiosDefault]);
 
   return (
     <div>

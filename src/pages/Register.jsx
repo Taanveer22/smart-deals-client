@@ -1,11 +1,12 @@
-import axios from 'axios';
 import { useNavigate } from 'react-router';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
+import useAxios from '../hooks/useAxios';
 
 const Register = () => {
   const { createUser, updateUserProfile } = useAuth();
   const navigate = useNavigate();
+  const axiosDefault = useAxios();
 
   const handleRegisterFormSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +27,7 @@ const Register = () => {
       };
       // console.log(userInfo);
       if (result?.user) {
-        const res = await axios.post(`http://localhost:5000/users`, userInfo);
+        const res = await axiosDefault.post(`/users`, userInfo);
         // console.log(res.data);
         res?.data && toast.success('registration done');
         navigate('/');

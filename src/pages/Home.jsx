@@ -1,14 +1,15 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import Banner from '../components/Banner';
 import RecentProducts from '../components/RecentProducts';
+import useAxios from '../hooks/useAxios';
 
 const Home = () => {
   const [sixProducts, setSixProducts] = useState([]);
+  const axiosDefault = useAxios();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/products/recent`)
+    axiosDefault
+      .get(`/products/recent`)
       .then((res) => {
         // console.log(res.data);
         setSixProducts(res.data);
@@ -16,7 +17,7 @@ const Home = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [axiosDefault]);
 
   return (
     <div>

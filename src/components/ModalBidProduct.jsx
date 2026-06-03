@@ -1,12 +1,12 @@
 import { FaDollarSign, FaEnvelope, FaImage, FaPhone, FaUser } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
-import useAxios from '../hooks/useAxios';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const ModalBidProduct = ({ loadedDetailsCard, modalRef, setRefresh }) => {
   const { user } = useAuth();
   // console.log(loadedDetailsCard);
-  const axiosInstance = useAxios();
+  const axiosSecure = useAxiosSecure();
 
   // ===============================
   // Get logged in user info
@@ -33,7 +33,7 @@ const ModalBidProduct = ({ loadedDetailsCard, modalRef, setRefresh }) => {
     // console.log(newBid);
 
     // SEND DATA TO BACKEND
-    axiosInstance
+    axiosSecure
       .post(`/bids`, newBid)
       .then((res) => {
         // console.log(res.data);

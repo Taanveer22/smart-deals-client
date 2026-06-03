@@ -1,9 +1,9 @@
-import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
 import { FaCalendarAlt, FaMapMarkerAlt, FaPhone, FaUser } from 'react-icons/fa';
 import { useLoaderData } from 'react-router';
 import BiddersList from '../components/BiddersList';
 import ModalBidProduct from '../components/ModalBidProduct';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const ProductCardDetails = () => {
   // ✅ 1. Hooks (ALWAYS FIRST)
@@ -11,6 +11,7 @@ const ProductCardDetails = () => {
   const [refresh, setRefresh] = useState(false);
   const modalRef = useRef(null);
   const loadedDetailsCard = useLoaderData();
+  const axiosSecure = useAxiosSecure();
   //   console.log(loadedDetailsCard);
 
   // ✅ 2. Destructuring props/data
@@ -43,8 +44,8 @@ const ProductCardDetails = () => {
     if (!loadedDetailsCard?._id) {
       return;
     }
-    axios
-      .get(`http://localhost:5000/bids/product/${loadedDetailsCard?._id}`)
+    axiosSecure
+      .get(`/bids/product/${loadedDetailsCard?._id}`)
       .then((res) => {
         // console.log(res.data);
         setBiddersTable(res.data);
@@ -52,7 +53,7 @@ const ProductCardDetails = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [loadedDetailsCard?._id, refresh]);
+  }, [loadedDetailsCard?._id, refresh, axiosSecure]);
   // 👈 refresh triggers re-fetch
 
   return (

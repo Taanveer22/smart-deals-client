@@ -1,19 +1,20 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import useAuth from '../hooks/useAuth';
+import useAxiosSecure from '../hooks/useAxiosSecure';
 
 const SellerProducts = () => {
   const { user } = useAuth();
   const [productsTable, setProductsTable] = useState([]);
+  const axiosSecure = useAxiosSecure();
 
   // console.log(user);
   const userEmail = user?.email || user?.providerData?.[0]?.email;
 
   const handleDeleteProduct = (id) => {
     // console.log(id);
-    axios
-      .delete(`http://localhost:5000/products/${id}`)
+    axiosSecure
+      .delete(`/products/${id}`)
       .then((res) => {
         // console.log(res.data);
         const remainingProducts = productsTable.filter((productItem) => productItem._id !== id);
@@ -28,8 +29,8 @@ const SellerProducts = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/products?email=${userEmail}`)
+    axiosSecure
+      .get(`/products?email=${userEmail}`)
       .then((res) => {
         // console.log(res.data);
         setProductsTable(res.data);
@@ -37,7 +38,7 @@ const SellerProducts = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [userEmail]);
+  }, [userEmail, axiosSecure]);
 
   return (
     <div>
