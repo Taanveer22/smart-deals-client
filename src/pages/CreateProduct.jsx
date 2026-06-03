@@ -47,9 +47,7 @@ const CreateProduct = () => {
       })
       .catch((error) => {
         // console.log(error);
-        if (error) {
-          toast.error('product creation failed');
-        }
+        alert(error?.message);
       });
   };
 

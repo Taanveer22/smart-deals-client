@@ -19,15 +19,13 @@ const SellerProducts = () => {
         // console.log(res.data);
         const remainingProducts = productsTable.filter((productItem) => productItem._id !== id);
         setProductsTable(remainingProducts);
-        if (res.data) {
+        if (res?.data.deletedCount > 0) {
           toast.error('product deleted done');
         }
       })
       .catch((error) => {
         // console.log(error);
-        if (error) {
-          toast.error('product deleted failed ');
-        }
+        alert(error?.message);
       });
   };
 
@@ -40,9 +38,7 @@ const SellerProducts = () => {
       })
       .catch((error) => {
         // console.log(error);
-        if (error) {
-          toast.error('by email bids not found ');
-        }
+        alert(error?.message);
       });
   }, [userEmail, axiosSecure]);
 

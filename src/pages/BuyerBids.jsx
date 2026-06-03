@@ -38,9 +38,7 @@ const BuyerBids = () => {
       })
       .catch((error) => {
         // console.log(error);
-        if (error) {
-          toast.error('bids not getting from backend');
-        }
+        alert(error?.message);
       });
   }, [userEmail, axiosSecure]);
 

@@ -45,9 +45,7 @@ const ModalBidProduct = ({ loadedDetailsCard, modalRef, setRefresh }) => {
       })
       .catch((error) => {
         // console.log(error);
-        if (error) {
-          toast.error('newbid not send to backend');
-        }
+        alert(error?.message);
       });
 
     //CLOSE MODAL AFTER SUBMIT

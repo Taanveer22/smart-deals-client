@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { FaCalendarAlt, FaMapMarkerAlt, FaPhone, FaUser } from 'react-icons/fa';
 import { useLoaderData } from 'react-router';
-import { toast } from 'react-toastify';
 import BiddersList from '../components/BiddersList';
 import ModalBidProduct from '../components/ModalBidProduct';
 import useAxiosSecure from '../hooks/useAxiosSecure';
@@ -53,9 +52,7 @@ const ProductCardDetails = () => {
       })
       .catch((error) => {
         // console.log(error);
-        if (error) {
-          toast.error('product bids not found ');
-        }
+        alert(error?.message);
       });
   }, [loadedDetailsCard?._id, refresh, axiosSecure]);
   // 👈 refresh triggers re-fetch

@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router';
+import axiosInstance from '../api/axios';
 import RootLayout from '../layouts/RootLayout';
 import AllProducts from '../pages/AllProducts';
 import BuyerBids from '../pages/BuyerBids';
@@ -30,7 +31,10 @@ let PublicRoutes = createBrowserRouter([
             <ProductCardDetails></ProductCardDetails>
           </PrivateRoute>
         ),
-        loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`),
+        loader: async ({ params }) => {
+          const res = await axiosInstance.get(`/products/${params.id}`);
+          return res.data;
+        },
       },
       {
         path: '/createProduct',
