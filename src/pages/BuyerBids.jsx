@@ -18,14 +18,12 @@ const BuyerBids = () => {
         if (res?.data?.deletedCount > 0) {
           const remainingBids = bidsTable.filter((bidItem) => bidItem._id !== id);
           setBidsTable(remainingBids);
-          toast.success('Delted bids completely');
+          toast.error('Delted bids completely');
         }
       })
       .catch((error) => {
         // console.log(error);
-        if (error) {
-          toast.error('Delted bids failed');
-        }
+        alert(error?.message);
       });
   };
 

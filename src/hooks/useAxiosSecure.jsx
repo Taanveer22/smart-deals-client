@@ -6,9 +6,9 @@ import { toast } from 'react-toastify';
 import useAuth from './useAuth';
 
 const instance = axios.create({
-  // baseURL: 'https://smart-deals-server-0wyg.onrender.com',
+  baseURL: 'https://smart-deals-server-0wyg.onrender.com',
   // baseURL: 'https://smart-deals-server-three-ebon.vercel.app',
-  baseURL: 'http://localhost:5000',
+  // baseURL: 'http://localhost:5000',
 });
 
 const useAxiosSecure = () => {
