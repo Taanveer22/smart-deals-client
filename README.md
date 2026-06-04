@@ -56,6 +56,9 @@ Alhamdulillah, **Smart Deals Client** is a modern bidding marketplace platform b
 ## 🌐 Hosting Platforms
 
 - **Client Hosting:** [Firebase Hosting](ca://s?q=Firebase_Hosting_overview)
+  - 🔗 **Live Demo:**
+    - 👉 [Smart Deals (web.app)](https://smart-deals-241e4.web.app/)
+    - 👉 [Smart Deals (firebaseapp.com)](https://smart-deals-241e4.firebaseapp.com/)
 - **Server Hosting:** [Render](ca://s?q=Render_server_hosting)
 
 ---
